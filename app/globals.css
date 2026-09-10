@@ -2,14 +2,13 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
-  color: #000;
+  background: white;
+  color: black;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  line-height: 1.4;
 }
 
 * {
@@ -27,56 +26,40 @@ a:hover {
 }
 
 
-/* =========================================================
+/* =========================
    PAGE
-   ========================================================= */
+   ========================= */
 
 .home {
-  width: 100%;
   min-height: 100vh;
   padding: 32px 40px;
 }
 
 
-/* =========================================================
+/* =========================
    GAME
-   ========================================================= */
+   ========================= */
 
 .cognitive-game {
-  width: 100%;
-  margin-bottom: 78px;
+  margin-bottom: 75px;
 }
 
-.game-top {
+.game-header {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
 
-  margin-bottom: 12px;
-}
+  margin-bottom: 10px;
 
-.game-name {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-.game-score {
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
-}
-
-
-/* =========================================================
-   GAME AREA
-   ========================================================= */
-
 .game {
   position: relative;
 
   width: 100%;
-  height: 300px;
+  height: 260px;
 
   overflow: hidden;
 
@@ -87,313 +70,274 @@ a:hover {
   cursor: pointer;
 
   touch-action: manipulation;
-
-  user-select: none;
 }
 
 
-/* =========================================================
-   SUBTLE PERCEPTION ILLUSION
-   ========================================================= */
+/* =========================
+   PERCEPTION BACKGROUND
+   ========================= */
 
 .illusion {
   position: absolute;
   inset: 0;
 
-  overflow: hidden;
-
   opacity: 0.07;
 }
 
-.illusion-shape {
+.illusion div {
   position: absolute;
 
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
 
-  border: 1px solid #000;
-
+  border: 1px solid black;
   border-radius: 50%;
 }
 
-.illusion-one {
-  left: 18%;
-  top: 10%;
-
-  transform: scaleX(2.2);
+.illusion div:nth-child(1) {
+  left: 10%;
+  top: -40px;
+  transform: scaleX(2);
 }
 
-.illusion-two {
-  left: 48%;
-  top: 30%;
-
-  transform: scaleX(0.55);
+.illusion div:nth-child(2) {
+  left: 30%;
+  top: 40px;
+  transform: scaleX(0.5);
 }
 
-.illusion-three {
-  right: 8%;
-  top: 5%;
-
-  transform: scaleX(1.8);
+.illusion div:nth-child(3) {
+  left: 50%;
+  top: -30px;
+  transform: scaleX(2);
 }
 
-
-/* =========================================================
-   CLOUDS
-   ========================================================= */
-
-.cloud {
-  position: absolute;
-
-  height: 1px;
-
-  background: #000;
-
-  opacity: 0.12;
+.illusion div:nth-child(4) {
+  left: 70%;
+  top: 30px;
+  transform: scaleX(0.5);
 }
 
-.cloud-one {
-  width: 80px;
-  top: 27%;
-  left: 15%;
+.illusion div:nth-child(5) {
+  left: 85%;
+  top: -50px;
+  transform: scaleX(2);
 }
 
-.cloud-two {
-  width: 45px;
-  top: 18%;
-  right: 21%;
+.illusion div:nth-child(6) {
+  left: 0;
+  top: 80px;
+  transform: scaleX(0.5);
 }
 
 
-/* =========================================================
+/* =========================
    GROUND
-   ========================================================= */
+   ========================= */
 
 .ground {
   position: absolute;
 
   left: 0;
   right: 0;
-  bottom: 7%;
+  bottom: 15%;
 
   height: 1px;
 
-  background: #000;
-}
-
-.ground span {
-  position: absolute;
-
-  top: 7px;
-
-  width: 30px;
-  height: 1px;
-
-  background: #000;
-
-  opacity: 0.25;
-}
-
-.ground span:nth-child(1) {
-  left: 8%;
-}
-
-.ground span:nth-child(2) {
-  left: 31%;
-}
-
-.ground span:nth-child(3) {
-  left: 54%;
-}
-
-.ground span:nth-child(4) {
-  left: 72%;
-}
-
-.ground span:nth-child(5) {
-  left: 91%;
+  background: black;
 }
 
 
-/* =========================================================
+/* =========================
    MUSHROOM
-   ========================================================= */
+   ========================= */
 
 .mushroom {
   position: absolute;
 
-  left: 13%;
+  left: 12%;
+  bottom: calc(15% + 2px);
 
-  width: 34px;
-  height: 43px;
+  width: 44px;
+  height: 54px;
 
   transform: translateX(-50%);
 
   z-index: 5;
 }
 
-.mushroom-cap {
+.mushroom.jump {
+  animation: jump 0.65s ease-out;
+}
+
+@keyframes jump {
+  0% {
+    bottom: calc(15% + 2px);
+  }
+
+  45% {
+    bottom: 55%;
+  }
+
+  100% {
+    bottom: calc(15% + 2px);
+  }
+}
+
+.cap {
   position: absolute;
 
   left: 2px;
   top: 0;
 
-  width: 30px;
-  height: 20px;
+  width: 40px;
+  height: 27px;
 
-  border: 2px solid #000;
+  border: 2px solid black;
 
-  border-radius: 17px 17px 5px 5px;
+  border-radius: 22px 22px 7px 7px;
 
-  background: #fff;
+  background: white;
 }
 
-.spot {
+.cap span {
   position: absolute;
 
-  display: block;
-
-  width: 5px;
-  height: 5px;
-
-  border: 1px solid #000;
+  width: 7px;
+  height: 7px;
 
   border-radius: 50%;
 
-  background: #000;
+  background: black;
 }
 
-.spot-one {
-  left: 6px;
-  top: 5px;
+.cap span:nth-child(1) {
+  left: 7px;
+  top: 8px;
 }
 
-.spot-two {
-  right: 6px;
+.cap span:nth-child(2) {
+  left: 17px;
   top: 4px;
 }
 
-.spot-three {
-  left: 13px;
-  top: 2px;
+.cap span:nth-child(3) {
+  right: 6px;
+  top: 9px;
 }
 
-.mushroom-face {
+.head {
   position: absolute;
 
-  left: 8px;
-  top: 17px;
+  left: 11px;
+  top: 24px;
 
-  width: 18px;
-  height: 17px;
+  width: 22px;
+  height: 23px;
 
-  border: 2px solid #000;
+  border: 2px solid black;
 
   border-top: 0;
 
-  background: #fff;
+  border-radius: 0 0 10px 10px;
 
-  border-radius: 0 0 8px 8px;
+  background: white;
 }
 
-.eye {
+.head i {
   position: absolute;
 
-  top: 5px;
+  top: 7px;
 
-  width: 3px;
-  height: 5px;
+  width: 4px;
+  height: 7px;
 
-  background: #000;
+  background: black;
 }
 
-.eye-left {
-  left: 3px;
+.head i:first-child {
+  left: 4px;
 }
 
-.eye-right {
-  right: 3px;
+.head i:last-child {
+  right: 4px;
 }
 
-.mushroom-feet {
+.feet {
   position: absolute;
 
-  left: 6px;
+  left: 8px;
   bottom: 0;
 
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
-.mushroom-feet i {
+.feet b {
   display: block;
 
-  width: 9px;
-  height: 4px;
+  width: 11px;
+  height: 5px;
 
-  background: #000;
+  border-radius: 5px;
 
-  border-radius: 4px;
+  background: black;
 }
 
 
-/* =========================================================
+/* =========================
    OBSTACLE
-   ========================================================= */
+   ========================= */
 
 .obstacle {
   position: absolute;
 
-  bottom: 7%;
+  bottom: calc(15% + 1px);
 
-  width: 28px;
-  height: 35px;
+  width: 27px;
+  height: 38px;
 
   transform: translateX(-50%);
 
   z-index: 4;
 }
 
-.obstacle-body {
+.obstacle div:first-child {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 27px;
+  height: 17px;
+
+  border: 2px solid black;
+
+  border-radius: 15px 15px 3px 3px;
+
+  background: white;
+}
+
+.obstacle div:last-child {
   position: absolute;
 
   left: 7px;
   bottom: 0;
 
-  width: 14px;
-  height: 27px;
+  width: 13px;
+  height: 25px;
 
-  border: 2px solid #000;
+  border: 2px solid black;
 
-  background: #fff;
-}
-
-.obstacle-top {
-  position: absolute;
-
-  left: 0;
-  top: 1px;
-
-  width: 28px;
-  height: 15px;
-
-  border: 2px solid #000;
-
-  background: #fff;
-
-  clip-path: polygon(
-    50% 0%,
-    100% 100%,
-    0% 100%
-  );
+  background: white;
 }
 
 
-/* =========================================================
-   GAME MESSAGE
-   ========================================================= */
+/* =========================
+   MESSAGE
+   ========================= */
 
-.game-message {
+.message {
   position: absolute;
   inset: 0;
 
@@ -403,20 +347,19 @@ a:hover {
   align-items: center;
   justify-content: center;
 
-  z-index: 20;
+  background: rgba(255, 255, 255, 0.72);
+
+  z-index: 10;
 
   pointer-events: none;
-
-  background: rgba(255, 255, 255, 0.72);
 }
 
-.game-message strong {
+.message strong {
   font-size: 13px;
-  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-.game-message span {
+.message span {
   margin-top: 4px;
 
   color: #777;
@@ -425,101 +368,64 @@ a:hover {
 }
 
 
-/* =========================================================
-   SITE TITLE
-   ========================================================= */
+/* =========================
+   TITLE
+   ========================= */
 
 .home-title {
-  color: #000;
+  margin-bottom: 60px;
 
   font-size: 24px;
   line-height: 1.2;
-
-  margin-bottom: 60px;
 }
 
 
-/* =========================================================
+/* =========================
    NAVIGATION
-   ========================================================= */
+   ========================= */
 
 .home-navigation {
   display: flex;
-
-  width: 100%;
 }
 
 .home-section {
   flex: 1;
-
-  min-width: 0;
-
   padding-right: 30px;
 }
 
 .home-section-title {
-  color: #000;
-
-  font-weight: 700;
-
   margin-bottom: 4px;
+
+  color: #000;
+  font-weight: 700;
 }
 
 .home-section a {
   display: block;
-
-  color: #777;
-}
-
-.home-section a:hover {
-  color: #000;
 }
 
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* =========================
+   MOBILE
+   ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 700px) {
+
   .home {
-    padding: 28px 30px;
+    padding: 24px;
   }
 
   .game {
-    height: 280px;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-  .home {
-    padding: 24px;
+    height: 230px;
   }
 
   .cognitive-game {
     margin-bottom: 55px;
   }
 
-  .game {
-    height: 250px;
-  }
-
-  .game-name {
-    font-size: 11px;
-  }
-
-  .game-score {
-    font-size: 12px;
-  }
-
   .home-title {
-    font-size: 21px;
-
     margin-bottom: 40px;
+    font-size: 21px;
   }
 
   .home-navigation {
@@ -527,10 +433,7 @@ a:hover {
   }
 
   .home-section {
-    width: 100%;
-
     margin-bottom: 24px;
-
     padding-right: 0;
   }
 }
