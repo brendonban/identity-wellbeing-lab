@@ -66,11 +66,7 @@ export default function Page() {
 
           <a href="#">overview</a>
           <a href="#">teaching</a>
-          <a href="#">smile new</a>
-          <a href="#">psiturk</a>
-          <a href="#">nyuconcats</a>
           <a href="#">minds, brains & machines</a>
-          <a href="#">videos</a>
         </section>
 
         <section className="home-section">
@@ -79,8 +75,7 @@ export default function Page() {
           <a href="#">by year</a>
           <a href="#">by topic</a>
           <a href="#">preprints</a>
-          <a href="#">osf.io</a>
-          <a href="#">github</a>
+          <a href="https://github.com/brendonban">github</a>
         </section>
 
         <section className="home-section">
@@ -93,7 +88,6 @@ export default function Page() {
         <section className="home-section">
           <div className="home-section-title">location</div>
 
-          <a href="#">compcogsci@nyu</a>
           <a href="#">getting involved</a>
           <a href="#">lab docs</a>
         </section>
