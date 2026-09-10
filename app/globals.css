@@ -29,12 +29,38 @@ a:hover {
   width: 100%;
   min-height: 100vh;
   padding: 20px 24px;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  column-gap: 40px;
+  align-items: start;
 }
 
 .home-title {
-  margin-bottom: 18px;
+  margin: 0;
 }
 
+.home-section {
+  margin: 0;
+}
+
+.home-section-title {
+  margin: 0 0 0 0;
+}
+
+.home-section a {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .home {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+}
 .home-section {
   margin-bottom: 18px;
 }
