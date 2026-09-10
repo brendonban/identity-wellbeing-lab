@@ -2,14 +2,12 @@ html,
 body {
   margin: 0;
   padding: 0;
-
   background: #fff;
   color: #000;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-
   font-size: 16px;
   line-height: 1.4;
 }
@@ -32,309 +30,131 @@ a:hover {
   text-decoration: underline;
 }
 
-
-/* =========================================================
-   PAGE
-   ========================================================= */
+/* Page */
 
 .home {
   width: 100%;
   min-height: 100vh;
-
   padding: 32px 40px;
 }
 
+/* Optical illusion */
 
-/* =========================================================
-   COGNITIVE GAME
-   ========================================================= */
-
-.cognitive-game {
+.illusion {
   width: 100%;
-
   margin-bottom: 78px;
 }
 
-.game-header {
+.illusion-label {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   margin-bottom: 10px;
-
   font-size: 12px;
   font-weight: 700;
-
   letter-spacing: 0.08em;
 }
 
-
-/* =========================================================
-   GAME AREA
-   ========================================================= */
-
-.game {
+.illusion-stage {
   position: relative;
-
   width: 100%;
   height: 300px;
-
   overflow: hidden;
-
   border: 1px solid #ddd;
-
   background: #fafafa;
-}
-
-
-/* =========================================================
-   SHAPE SCENE
-   ========================================================= */
-
-.shape-scene {
-  position: absolute;
-
-  inset: 0;
-}
-
-.shape-button {
-  position: absolute;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  padding: 0;
-
-  border: 0;
-
-  background: transparent;
-
-  transform: translate(-50%, -50%);
-
-  cursor: default;
 }
 
-.shape-button.can-click {
-  cursor: pointer;
+.illusion-wheel {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  transition: transform 0.03s linear;
 }
 
-.shape-button.can-click:hover {
-  transform: translate(-50%, -50%) scale(1.12);
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 10px solid #000;
 }
 
+.ring-1 {
+  inset: 0;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
 
-/* =========================================================
-   SHAPES
-   ========================================================= */
+.ring-2 {
+  inset: 18px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
 
-.shape {
-  display: block;
+.ring-3 {
+  inset: 36px;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
 
-  width: 100%;
-  height: 100%;
+.ring-4 {
+  inset: 54px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
 
+.ring-5 {
+  inset: 72px;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.ring-6 {
+  inset: 90px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.illusion-center {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   background: #000;
 }
 
-.circle {
-  border-radius: 50%;
-}
-
-.square {
-  border-radius: 0;
-}
-
-.triangle {
-  width: 0;
-  height: 0;
-
-  background: transparent;
-
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-bottom: 34px solid #000;
-}
-
-
-/* =========================================================
-   START / FINISH MESSAGE
-   ========================================================= */
-
-.game-message {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 10;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  text-align: center;
-}
-
-.game-message strong {
-  font-size: 14px;
-
-  letter-spacing: 0.08em;
-}
-
-.game-message span {
-  margin-top: 6px;
-
-  color: #777;
-
-  font-size: 13px;
-}
-
-.game-message button {
-  margin-top: 12px;
-
-  padding: 0;
-
-  border: 0;
-
-  background: transparent;
-
-  color: #777;
-
-  cursor: pointer;
-
-  font-size: 13px;
-}
-
-.game-message button:hover {
-  color: #000;
-
-  text-decoration: underline;
-}
-
-
-/* =========================================================
-   FLICKER
-   ========================================================= */
-
-.flicker {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 5;
-
-  background: #fff;
-}
-
-
-/* =========================================================
-   ROUND LABEL
-   ========================================================= */
-
-.round-label {
-  position: absolute;
-
-  left: 50%;
-  bottom: 14px;
-
-  transform: translateX(-50%);
-
-  z-index: 8;
-
-  color: #999;
-
-  font-size: 11px;
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   FEEDBACK
-   ========================================================= */
-
-.feedback {
-  position: absolute;
-
-  left: 50%;
-  bottom: 14px;
-
-  z-index: 9;
-
-  transform: translateX(-50%);
-
-  color: #000;
-
-  font-size: 11px;
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   GAME FOOTER
-   ========================================================= */
-
-.game-footer {
-  height: 20px;
-
-  margin-top: 8px;
-
-  color: #999;
-
-  font-size: 11px;
-}
-
-
-/* =========================================================
-   SITE TITLE
-   ========================================================= */
+/* Title */
 
 .home-title {
   margin-bottom: 60px;
-
   color: #000;
-
   font-size: 24px;
   line-height: 1.2;
 }
 
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
+/* Navigation */
 
 .home-navigation {
   display: flex;
-
   width: 100%;
 }
 
 .home-section {
   flex: 1;
-
   min-width: 0;
-
   padding-right: 30px;
 }
 
 .home-section-title {
   margin-bottom: 4px;
-
   color: #000;
-
   font-weight: 700;
 }
 
 .home-section a {
   display: block;
-
   color: #777;
 }
 
@@ -342,44 +162,64 @@ a:hover {
   color: #000;
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* Tablet */
 
 @media (max-width: 900px) {
-
   .home {
     padding: 28px 30px;
   }
 
-  .game {
+  .illusion-stage {
     height: 280px;
   }
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* Mobile */
 
 @media (max-width: 700px) {
-
   .home {
     padding: 24px;
   }
 
-  .cognitive-game {
+  .illusion {
     margin-bottom: 55px;
   }
 
-  .game {
+  .illusion-stage {
     height: 240px;
+  }
+
+  .illusion-wheel {
+    width: 170px;
+    height: 170px;
+  }
+
+  .ring {
+    border-width: 8px;
+  }
+
+  .ring-2 {
+    inset: 14px;
+  }
+
+  .ring-3 {
+    inset: 28px;
+  }
+
+  .ring-4 {
+    inset: 42px;
+  }
+
+  .ring-5 {
+    inset: 56px;
+  }
+
+  .ring-6 {
+    inset: 70px;
   }
 
   .home-title {
     margin-bottom: 40px;
-
     font-size: 21px;
   }
 
@@ -389,13 +229,7 @@ a:hover {
 
   .home-section {
     width: 100%;
-
     margin-bottom: 24px;
-
     padding-right: 0;
-  }
-
-  .shape-button.can-click:hover {
-    transform: translate(-50%, -50%);
   }
 }
