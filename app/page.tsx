@@ -1,62 +1,42 @@
-const sections = [
-  {
-    title: "research",
-    links: [
-      { name: "overview", href: "/research" },
-      { name: "identity & belonging", href: "/research#identity" },
-      { name: "mental health & wellbeing", href: "/research#wellbeing" },
-      { name: "sexuality & HIV", href: "/research#sexuality" },
-    ],
-  },
-  {
-    title: "publications",
-    links: [
-      { name: "by year", href: "/publications#year" },
-      { name: "by topic", href: "/publications#topic" },
-      { name: "research outputs", href: "/publications#outputs" },
-    ],
-  },
-  {
-    title: "people",
-    links: [
-      { name: "brendon ban", href: "/people" },
-      { name: "collaborators", href: "/people#collaborators" },
-    ],
-  },
-  {
-    title: "location",
-    links: [
-      { name: "kuala lumpur, malaysia", href: "/people#location" },
-    ],
-  },
-];
-
 export default function Home() {
   return (
     <main className="home">
       <div className="home-title">
-        identity &amp; wellbeing lab @ malaysia
+        computation & cognition lab @ nyu
       </div>
 
-      <div className="home-content">
-        {sections.map((section) => (
-          <section className="home-section" key={section.title}>
-            <div className="home-section-title">
-              {section.title}
-            </div>
+      <section className="home-section">
+        <div className="home-section-title">research</div>
+        <a href="#">overview</a>
+        <a href="#">teaching</a>
+        <a href="#">smile new</a>
+        <a href="#">psiturk</a>
+        <a href="#">nyuconcats</a>
+        <a href="#">minds, brains & machines</a>
+        <a href="#">videos</a>
+      </section>
 
-            {section.links.map((link) => (
-              <a
-                className="home-link"
-                href={link.href}
-                key={link.name}
-              >
-                {link.name}
-              </a>
-            ))}
-          </section>
-        ))}
-      </div>
+      <section className="home-section">
+        <div className="home-section-title">publications</div>
+        <a href="#">by year</a>
+        <a href="#">by topic</a>
+        <a href="#">preprints</a>
+        <a href="#">osf.io</a>
+        <a href="#">github</a>
+      </section>
+
+      <section className="home-section">
+        <div className="home-section-title">people</div>
+        <a href="#">todd gureckis (pi)</a>
+        <a href="#">the team</a>
+      </section>
+
+      <section className="home-section">
+        <div className="home-section-title">location</div>
+        <a href="#">compcogsci@nyu</a>
+        <a href="#">getting involved</a>
+        <a href="#">lab docs</a>
+      </section>
     </main>
   );
 }
