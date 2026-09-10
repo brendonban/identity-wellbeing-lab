@@ -2,11 +2,24 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+html {
   background: #fff;
   color: #000;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+html[data-theme="dark"] {
+  background: #000;
+  color: #fff;
 }
 
 body {
+  background: inherit;
+  color: inherit;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -16,9 +29,7 @@ body {
   box-sizing: border-box;
 }
 
-button {
-  font: inherit;
-}
+/* Links */
 
 a {
   color: #777;
@@ -30,106 +41,106 @@ a:hover {
   text-decoration: underline;
 }
 
+html[data-theme="dark"] a {
+  color: #888;
+}
+
+html[data-theme="dark"] a:hover {
+  color: #fff;
+}
+
 /* Page */
 
 .home {
   width: 100%;
   min-height: 100vh;
   padding: 32px 40px;
+  background: inherit;
+  color: inherit;
 }
 
-/* Optical illusion */
+/* Theme */
 
-.illusion {
-  width: 100%;
-  margin-bottom: 78px;
-}
-
-.illusion-label {
+.theme-control {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 5px;
+  margin-bottom: 14px;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
-.illusion-stage {
+.theme-control button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #999;
+  font: inherit;
+  cursor: pointer;
+}
+
+.theme-control button:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.theme-control button.active {
+  color: #000;
+}
+
+html[data-theme="dark"] .theme-control button {
+  color: #666;
+}
+
+html[data-theme="dark"] .theme-control button:hover {
+  color: #fff;
+}
+
+html[data-theme="dark"] .theme-control button.active {
+  color: #fff;
+}
+
+.theme-control span {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .theme-control span {
+  color: #555;
+}
+
+/* Pattern video */
+
+.pattern-video {
   position: relative;
   width: 100%;
   height: 300px;
+  margin-bottom: 78px;
   overflow: hidden;
-  border: 1px solid #ddd;
-  background: #fafafa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #fff;
 }
 
-.illusion-wheel {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  transition: transform 0.03s linear;
+.pattern-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 10px solid #000;
-}
+/*
+  In dark mode, invert the Gureckis pattern.
+  This keeps the same video while making
+  the visual work against a dark page.
+*/
 
-.ring-1 {
-  inset: 0;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
-.ring-2 {
-  inset: 18px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-.ring-3 {
-  inset: 36px;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
-.ring-4 {
-  inset: 54px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-.ring-5 {
-  inset: 72px;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
-.ring-6 {
-  inset: 90px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-.illusion-center {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #000;
+html[data-theme="dark"] .pattern-video video {
+  filter: invert(1);
 }
 
 /* Title */
 
 .home-title {
   margin-bottom: 60px;
-  color: #000;
+  color: inherit;
   font-size: 24px;
   line-height: 1.2;
 }
@@ -149,17 +160,12 @@ a:hover {
 
 .home-section-title {
   margin-bottom: 4px;
-  color: #000;
+  color: inherit;
   font-weight: 700;
 }
 
 .home-section a {
   display: block;
-  color: #777;
-}
-
-.home-section a:hover {
-  color: #000;
 }
 
 /* Tablet */
@@ -169,7 +175,7 @@ a:hover {
     padding: 28px 30px;
   }
 
-  .illusion-stage {
+  .pattern-video {
     height: 280px;
   }
 }
@@ -181,41 +187,13 @@ a:hover {
     padding: 24px;
   }
 
-  .illusion {
-    margin-bottom: 55px;
+  .theme-control {
+    margin-bottom: 12px;
   }
 
-  .illusion-stage {
+  .pattern-video {
     height: 240px;
-  }
-
-  .illusion-wheel {
-    width: 170px;
-    height: 170px;
-  }
-
-  .ring {
-    border-width: 8px;
-  }
-
-  .ring-2 {
-    inset: 14px;
-  }
-
-  .ring-3 {
-    inset: 28px;
-  }
-
-  .ring-4 {
-    inset: 42px;
-  }
-
-  .ring-5 {
-    inset: 56px;
-  }
-
-  .ring-6 {
-    inset: 70px;
+    margin-bottom: 55px;
   }
 
   .home-title {
