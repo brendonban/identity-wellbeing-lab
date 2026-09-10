@@ -2,17 +2,24 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: white;
-  color: black;
+
+  background: #fff;
+  color: #000;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+
   font-size: 16px;
+  line-height: 1.4;
 }
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  font: inherit;
 }
 
 a {
@@ -26,320 +33,142 @@ a:hover {
 }
 
 
-/* =========================
+/* =========================================================
    PAGE
-   ========================= */
+   ========================================================= */
 
 .home {
+  width: 100%;
   min-height: 100vh;
+
   padding: 32px 40px;
 }
 
 
-/* =========================
-   GAME
-   ========================= */
+/* =========================================================
+   COGNITIVE GAME
+   ========================================================= */
 
 .cognitive-game {
-  margin-bottom: 75px;
+  width: 100%;
+
+  margin-bottom: 78px;
 }
 
 .game-header {
   display: flex;
+
   justify-content: space-between;
+  align-items: center;
 
   margin-bottom: 10px;
 
   font-size: 12px;
   font-weight: 700;
+
   letter-spacing: 0.08em;
 }
+
+
+/* =========================================================
+   GAME AREA
+   ========================================================= */
 
 .game {
   position: relative;
 
   width: 100%;
-  height: 260px;
+  height: 300px;
 
   overflow: hidden;
 
   border: 1px solid #ddd;
 
   background: #fafafa;
-
-  cursor: pointer;
-
-  touch-action: manipulation;
 }
 
 
-/* =========================
-   PERCEPTION BACKGROUND
-   ========================= */
+/* =========================================================
+   SHAPE SCENE
+   ========================================================= */
 
-.illusion {
+.shape-scene {
   position: absolute;
+
   inset: 0;
-
-  opacity: 0.07;
 }
 
-.illusion div {
+.shape-button {
   position: absolute;
-
-  width: 180px;
-  height: 180px;
-
-  border: 1px solid black;
-  border-radius: 50%;
-}
-
-.illusion div:nth-child(1) {
-  left: 10%;
-  top: -40px;
-  transform: scaleX(2);
-}
-
-.illusion div:nth-child(2) {
-  left: 30%;
-  top: 40px;
-  transform: scaleX(0.5);
-}
-
-.illusion div:nth-child(3) {
-  left: 50%;
-  top: -30px;
-  transform: scaleX(2);
-}
-
-.illusion div:nth-child(4) {
-  left: 70%;
-  top: 30px;
-  transform: scaleX(0.5);
-}
-
-.illusion div:nth-child(5) {
-  left: 85%;
-  top: -50px;
-  transform: scaleX(2);
-}
-
-.illusion div:nth-child(6) {
-  left: 0;
-  top: 80px;
-  transform: scaleX(0.5);
-}
-
-
-/* =========================
-   GROUND
-   ========================= */
-
-.ground {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 15%;
-
-  height: 1px;
-
-  background: black;
-}
-
-
-/* =========================
-   MUSHROOM
-   ========================= */
-
-.mushroom {
-  position: absolute;
-
-  left: 12%;
-  bottom: calc(15% + 2px);
-
-  width: 44px;
-  height: 54px;
-
-  transform: translateX(-50%);
-
-  z-index: 5;
-}
-
-.mushroom.jump {
-  animation: jump 0.65s ease-out;
-}
-
-@keyframes jump {
-  0% {
-    bottom: calc(15% + 2px);
-  }
-
-  45% {
-    bottom: 55%;
-  }
-
-  100% {
-    bottom: calc(15% + 2px);
-  }
-}
-
-.cap {
-  position: absolute;
-
-  left: 2px;
-  top: 0;
-
-  width: 40px;
-  height: 27px;
-
-  border: 2px solid black;
-
-  border-radius: 22px 22px 7px 7px;
-
-  background: white;
-}
-
-.cap span {
-  position: absolute;
-
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: black;
-}
-
-.cap span:nth-child(1) {
-  left: 7px;
-  top: 8px;
-}
-
-.cap span:nth-child(2) {
-  left: 17px;
-  top: 4px;
-}
-
-.cap span:nth-child(3) {
-  right: 6px;
-  top: 9px;
-}
-
-.head {
-  position: absolute;
-
-  left: 11px;
-  top: 24px;
-
-  width: 22px;
-  height: 23px;
-
-  border: 2px solid black;
-
-  border-top: 0;
-
-  border-radius: 0 0 10px 10px;
-
-  background: white;
-}
-
-.head i {
-  position: absolute;
-
-  top: 7px;
-
-  width: 4px;
-  height: 7px;
-
-  background: black;
-}
-
-.head i:first-child {
-  left: 4px;
-}
-
-.head i:last-child {
-  right: 4px;
-}
-
-.feet {
-  position: absolute;
-
-  left: 8px;
-  bottom: 0;
 
   display: flex;
-  gap: 12px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  transform: translate(-50%, -50%);
+
+  cursor: default;
 }
 
-.feet b {
+.shape-button.can-click {
+  cursor: pointer;
+}
+
+.shape-button.can-click:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+
+/* =========================================================
+   SHAPES
+   ========================================================= */
+
+.shape {
   display: block;
 
-  width: 11px;
-  height: 5px;
+  width: 100%;
+  height: 100%;
 
-  border-radius: 5px;
+  background: #000;
+}
 
-  background: black;
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 0;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+
+  background: transparent;
+
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 34px solid #000;
 }
 
 
-/* =========================
-   OBSTACLE
-   ========================= */
+/* =========================================================
+   START / FINISH MESSAGE
+   ========================================================= */
 
-.obstacle {
+.game-message {
   position: absolute;
 
-  bottom: calc(15% + 1px);
-
-  width: 27px;
-  height: 38px;
-
-  transform: translateX(-50%);
-
-  z-index: 4;
-}
-
-.obstacle div:first-child {
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 27px;
-  height: 17px;
-
-  border: 2px solid black;
-
-  border-radius: 15px 15px 3px 3px;
-
-  background: white;
-}
-
-.obstacle div:last-child {
-  position: absolute;
-
-  left: 7px;
-  bottom: 0;
-
-  width: 13px;
-  height: 25px;
-
-  border: 2px solid black;
-
-  background: white;
-}
-
-
-/* =========================
-   MESSAGE
-   ========================= */
-
-.message {
-  position: absolute;
   inset: 0;
+
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
@@ -347,49 +176,151 @@ a:hover {
   align-items: center;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.9);
 
-  z-index: 10;
+  text-align: center;
+}
+
+.game-message strong {
+  font-size: 14px;
+
+  letter-spacing: 0.08em;
+}
+
+.game-message span {
+  margin-top: 6px;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+.game-message button {
+  margin-top: 12px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #777;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+.game-message button:hover {
+  color: #000;
+
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   FLICKER
+   ========================================================= */
+
+.flicker {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   ROUND LABEL
+   ========================================================= */
+
+.round-label {
+  position: absolute;
+
+  left: 50%;
+  bottom: 14px;
+
+  transform: translateX(-50%);
+
+  z-index: 8;
+
+  color: #999;
+
+  font-size: 11px;
 
   pointer-events: none;
 }
 
-.message strong {
-  font-size: 13px;
-  letter-spacing: 0.08em;
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.feedback {
+  position: absolute;
+
+  left: 50%;
+  bottom: 14px;
+
+  z-index: 9;
+
+  transform: translateX(-50%);
+
+  color: #000;
+
+  font-size: 11px;
+
+  pointer-events: none;
 }
 
-.message span {
-  margin-top: 4px;
 
-  color: #777;
+/* =========================================================
+   GAME FOOTER
+   ========================================================= */
 
-  font-size: 12px;
+.game-footer {
+  height: 20px;
+
+  margin-top: 8px;
+
+  color: #999;
+
+  font-size: 11px;
 }
 
 
-/* =========================
-   TITLE
-   ========================= */
+/* =========================================================
+   SITE TITLE
+   ========================================================= */
 
 .home-title {
   margin-bottom: 60px;
+
+  color: #000;
 
   font-size: 24px;
   line-height: 1.2;
 }
 
 
-/* =========================
+/* =========================================================
    NAVIGATION
-   ========================= */
+   ========================================================= */
 
 .home-navigation {
   display: flex;
+
+  width: 100%;
 }
 
 .home-section {
   flex: 1;
+
+  min-width: 0;
+
   padding-right: 30px;
 }
 
@@ -397,17 +328,40 @@ a:hover {
   margin-bottom: 4px;
 
   color: #000;
+
   font-weight: 700;
 }
 
 .home-section a {
   display: block;
+
+  color: #777;
+}
+
+.home-section a:hover {
+  color: #000;
 }
 
 
-/* =========================
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .home {
+    padding: 28px 30px;
+  }
+
+  .game {
+    height: 280px;
+  }
+}
+
+
+/* =========================================================
    MOBILE
-   ========================= */
+   ========================================================= */
 
 @media (max-width: 700px) {
 
@@ -415,16 +369,17 @@ a:hover {
     padding: 24px;
   }
 
-  .game {
-    height: 230px;
-  }
-
   .cognitive-game {
     margin-bottom: 55px;
   }
 
+  .game {
+    height: 240px;
+  }
+
   .home-title {
     margin-bottom: 40px;
+
     font-size: 21px;
   }
 
@@ -433,7 +388,14 @@ a:hover {
   }
 
   .home-section {
+    width: 100%;
+
     margin-bottom: 24px;
+
     padding-right: 0;
+  }
+
+  .shape-button.can-click:hover {
+    transform: translate(-50%, -50%);
   }
 }
