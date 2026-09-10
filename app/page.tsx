@@ -56,7 +56,7 @@ export default function Page() {
 
       {/* Title */}
       <div className="home-title">
-        computation & cognition lab @ nyu
+        the identity wellbeing lab
       </div>
 
       {/* Navigation */}
@@ -86,7 +86,7 @@ export default function Page() {
         <section className="home-section">
           <div className="home-section-title">people</div>
 
-          <a href="#">todd gureckis (pi)</a>
+          <a href="https://www.brendonban.me">brendon ban (pi)</a>
           <a href="#">the team</a>
         </section>
 
