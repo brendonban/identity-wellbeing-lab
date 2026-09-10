@@ -1,21 +1,62 @@
-import { BlogPosts } from 'app/components/posts'
+const sections = [
+  {
+    title: "research",
+    links: [
+      { name: "overview", href: "/research" },
+      { name: "identity & belonging", href: "/research#identity" },
+      { name: "mental health & wellbeing", href: "/research#wellbeing" },
+      { name: "sexuality & HIV", href: "/research#sexuality" },
+    ],
+  },
+  {
+    title: "publications",
+    links: [
+      { name: "by year", href: "/publications#year" },
+      { name: "by topic", href: "/publications#topic" },
+      { name: "research outputs", href: "/publications#outputs" },
+    ],
+  },
+  {
+    title: "people",
+    links: [
+      { name: "brendon ban", href: "/people" },
+      { name: "collaborators", href: "/people#collaborators" },
+    ],
+  },
+  {
+    title: "location",
+    links: [
+      { name: "kuala lumpur, malaysia", href: "/people#location" },
+    ],
+  },
+];
 
-export default function Page() {
+export default function Home() {
   return (
-    <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
-      </h1>
-      <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
-      </p>
-      <div className="my-8">
-        <BlogPosts />
+    <main className="home">
+      <div className="home-title">
+        identity &amp; wellbeing lab @ malaysia
       </div>
-    </section>
-  )
+
+      <div className="home-content">
+        {sections.map((section) => (
+          <section className="home-section" key={section.title}>
+            <div className="home-section-title">
+              {section.title}
+            </div>
+
+            {section.links.map((link) => (
+              <a
+                className="home-link"
+                href={link.href}
+                key={link.name}
+              >
+                {link.name}
+              </a>
+            ))}
+          </section>
+        ))}
+      </div>
+    </main>
+  );
 }
