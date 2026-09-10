@@ -8,8 +8,8 @@ body {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 * {
@@ -25,52 +25,80 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Main page */
+
 .home {
   width: 100%;
   min-height: 100vh;
-  padding: 20px 24px;
-
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
-  column-gap: 40px;
-  align-items: start;
+  padding: 32px 40px;
 }
 
+/* Lab title */
+
 .home-title {
-  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 60px;
+}
+
+/* Navigation */
+
+.home {
+  display: block;
 }
 
 .home-section {
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
   margin: 0;
+  padding-right: 30px;
 }
 
 .home-section-title {
-  margin: 0 0 0 0;
+  margin: 0 0 4px 0;
 }
 
 .home-section a {
   display: block;
   margin: 0;
   padding: 0;
+}
+
+/* Laptop / smaller desktop */
+
+@media (max-width: 1000px) {
+  .home {
+    padding: 28px 30px;
+  }
+
+  .home-title {
+    font-size: 22px;
+    margin-bottom: 50px;
+  }
+
+  .home-section {
+    width: 25%;
+    padding-right: 20px;
+  }
 }
 
 /* Mobile */
+
 @media (max-width: 700px) {
   .home {
-    grid-template-columns: 1fr;
-    row-gap: 18px;
+    padding: 24px;
   }
-}
-.home-section {
-  margin-bottom: 18px;
-}
 
-.home-section-title {
-  margin: 0;
-}
+  .home-title {
+    font-size: 21px;
+    margin-bottom: 40px;
+  }
 
-.home-section a {
-  display: block;
-  margin: 0;
-  padding: 0;
+  .home-section {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+    padding-right: 0;
+  }
 }
