@@ -34,7 +34,144 @@ a:hover {
   padding: 32px 40px;
 }
 
+/* Perception Game */
+
+.perception-game {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  padding: 0;
+  margin: 0 0 75px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(70px, 13vw, 190px);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+
+  text-align: left;
+  cursor: crosshair;
+
+  overflow: hidden;
+}
+
+.perception-game span {
+  display: block;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+.perception-game span:last-child {
+  margin-left: 7vw;
+}
+
+.perception-game:hover span {
+  transition: transform 0.05s linear;
+}
+
+.perception-game.game-active span:first-child {
+  transform: translateX(25px) !important;
+}
+
+.perception-game.game-active span:last-child {
+  transform: translateX(-25px) !important;
+}
+
 /* Lab title */
+
+.home-title {
+  color: #000;
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 60px;
+}
+
+/* Navigation */
+
+.home-navigation {
+  display: flex;
+  width: 100%;
+}
+
+.home-section {
+  flex: 1;
+  min-width: 0;
+  padding-right: 30px;
+}
+
+.home-section-title {
+  color: #000;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.home-section a {
+  display: block;
+  color: #777;
+  margin: 0;
+  padding: 0;
+}
+
+/* Laptop */
+
+@media (max-width: 1000px) {
+  .home {
+    padding: 28px 30px;
+  }
+
+  .perception-game {
+    font-size: clamp(60px, 12vw, 130px);
+    margin-bottom: 60px;
+  }
+
+  .home-title {
+    font-size: 22px;
+    margin-bottom: 50px;
+  }
+
+  .home-section {
+    padding-right: 20px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .home {
+    padding: 24px;
+  }
+
+  .perception-game {
+    font-size: 19vw;
+    margin-bottom: 50px;
+    letter-spacing: -0.08em;
+  }
+
+  .perception-game span:last-child {
+    margin-left: 12vw;
+  }
+
+  .home-title {
+    font-size: 21px;
+    margin-bottom: 40px;
+  }
+
+  .home-navigation {
+    display: block;
+  }
+
+  .home-section {
+    width: 100%;
+    margin-bottom: 24px;
+    padding-right: 0;
+  }
+}/* Lab title */
 
 .home-title {
   color: #000;
