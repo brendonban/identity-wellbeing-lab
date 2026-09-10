@@ -31,8 +31,6 @@ export default function Home() {
 
   return (
     <main className="home">
-      {/* Perception Game */}
-
       <button
         className={`perception-game ${active ? "game-active" : ""}`}
         onClick={triggerGame}
@@ -55,18 +53,13 @@ export default function Home() {
         </span>
       </button>
 
-      {/* Lab title */}
-
       <div className="home-title">
         computation & cognition lab @ nyu
       </div>
 
-      {/* Navigation */}
-
       <div className="home-navigation">
         <section className="home-section">
           <div className="home-section-title">research</div>
-
           <a href="#">overview</a>
           <a href="#">teaching</a>
           <a href="#">smile new</a>
@@ -78,7 +71,6 @@ export default function Home() {
 
         <section className="home-section">
           <div className="home-section-title">publications</div>
-
           <a href="#">by year</a>
           <a href="#">by topic</a>
           <a href="#">preprints</a>
@@ -88,24 +80,17 @@ export default function Home() {
 
         <section className="home-section">
           <div className="home-section-title">people</div>
-
           <a href="#">todd gureckis (pi)</a>
           <a href="#">the team</a>
         </section>
 
         <section className="home-section">
           <div className="home-section-title">location</div>
-
           <a href="#">compcogsci@nyu</a>
           <a href="#">getting involved</a>
           <a href="#">lab docs</a>
         </section>
       </div>
-    </main>
-  );
-}        <a href="#">getting involved</a>
-        <a href="#">lab docs</a>
-      </section>
     </main>
   );
 }
