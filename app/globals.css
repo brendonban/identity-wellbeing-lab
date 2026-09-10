@@ -17,11 +17,12 @@ body {
 }
 
 a {
-  color: #000;
+  color: #777;
   text-decoration: none;
 }
 
 a:hover {
+  color: #000;
   text-decoration: underline;
 }
 
@@ -36,16 +37,13 @@ a:hover {
 /* Lab title */
 
 .home-title {
+  color: #000;
   font-size: 24px;
   line-height: 1.2;
   margin-bottom: 60px;
 }
 
 /* Navigation */
-
-.home {
-  display: block;
-}
 
 .home-section {
   display: inline-block;
@@ -55,17 +53,24 @@ a:hover {
   padding-right: 30px;
 }
 
+/* Section headings */
+
 .home-section-title {
+  color: #000;
+  font-weight: 700;
   margin: 0 0 4px 0;
 }
 
+/* Navigation links */
+
 .home-section a {
   display: block;
+  color: #777;
   margin: 0;
   padding: 0;
 }
 
-/* Laptop / smaller desktop */
+/* Laptop */
 
 @media (max-width: 1000px) {
   .home {
