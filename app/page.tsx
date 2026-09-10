@@ -1,240 +1,201 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-
-type GameStatus = "ready" | "playing" | "gameover";
+import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
-  const [status, setStatus] = useState<GameStatus>("ready");
+  const [playing, setPlaying] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [jumping, setJumping] = useState(false);
   const [score, setScore] = useState(0);
-  const [playerY, setPlayerY] = useState(0);
-  const [obstacleX, setObstacleX] = useState(100);
+  const [obstacleLeft, setObstacleLeft] = useState(90);
 
-  const velocityRef = useRef(0);
-  const playerYRef = useRef(0);
-  const obstacleXRef = useRef(100);
-  const animationRef = useRef<number | null>(null);
-  const lastTimeRef = useRef(0);
   const scoreRef = useRef(0);
-  const speedRef = useRef(0.42);
+  const obstacleRef = useRef(90);
+  const jumpRef = useRef(false);
+  const animationRef = useRef<number | null>(null);
 
-  const jump = useCallback(() => {
-    if (status === "ready") {
-      setStatus("playing");
-      lastTimeRef.current = performance.now();
-    }
-
-    if (status === "playing" && playerYRef.current === 0) {
-      velocityRef.current = 0.85;
-    }
-
-    if (status === "gameover") {
-      setStatus("playing");
+  const jump = () => {
+    if (gameOver) {
+      setGameOver(false);
+      setPlaying(true);
       setScore(0);
       scoreRef.current = 0;
-      playerYRef.current = 0;
-      obstacleXRef.current = 100;
-      velocityRef.current = 0;
-      speedRef.current = 0.42;
-      lastTimeRef.current = performance.now();
+      obstacleRef.current = 90;
+      setObstacleLeft(90);
     }
-  }, [status]);
+
+    if (!playing && !gameOver) {
+      setPlaying(true);
+    }
+
+    if (!jumpRef.current) {
+      jumpRef.current = true;
+      setJumping(true);
+
+      setTimeout(() => {
+        jumpRef.current = false;
+        setJumping(false);
+      }, 650);
+    }
+  };
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.code === "Space" ||
-        event.code === "ArrowUp" ||
-        event.code === "KeyW"
-      ) {
-        event.preventDefault();
+    const keyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        e.preventDefault();
         jump();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", keyDown);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [jump]);
+    return () => window.removeEventListener("keydown", keyDown);
+  }, [playing, gameOver]);
 
   useEffect(() => {
-    if (status !== "playing") {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      return;
-    }
+    if (!playing) return;
 
-    const animate = (time: number) => {
-      const delta = Math.min(time - lastTimeRef.current, 32);
-      lastTimeRef.current = time;
+    const loop = () => {
+      obstacleRef.current -= 0.22;
 
-      // Gravity
-      velocityRef.current -= 0.0032 * delta;
-      playerYRef.current += velocityRef.current * delta;
-
-      if (playerYRef.current <= 0) {
-        playerYRef.current = 0;
-        velocityRef.current = 0;
-      }
-
-      // Move obstacle
-      obstacleXRef.current -= speedRef.current * delta;
-
-      if (obstacleXRef.current < -10) {
-        obstacleXRef.current = 100 + Math.random() * 20;
+      if (obstacleRef.current < -8) {
+        obstacleRef.current = 90;
         scoreRef.current += 1;
         setScore(scoreRef.current);
-
-        // Gradually increase speed
-        speedRef.current = Math.min(
-          0.75,
-          0.42 + scoreRef.current * 0.008
-        );
       }
 
-      // Collision
-      const playerLeft = 11;
-      const playerRight = 17;
-      const obstacleLeft = obstacleXRef.current;
-      const obstacleRight = obstacleXRef.current + 5;
+      setObstacleLeft(obstacleRef.current);
 
-      const playerBottom = playerYRef.current;
-      const playerTop = playerYRef.current + 9;
-
+      /*
+       * Very forgiving collision zone.
+       * You only need to jump when the obstacle
+       * gets close to the mushroom.
+       */
       if (
-        obstacleRight > playerLeft &&
-        obstacleLeft < playerRight &&
-        playerBottom < 8 &&
-        playerTop > 0
+        obstacleRef.current > 10 &&
+        obstacleRef.current < 17 &&
+        !jumpRef.current
       ) {
-        setStatus("gameover");
-        return;
+        setPlaying(false);
+        setGameOver(true);
       }
 
-      setPlayerY(playerYRef.current);
-      setObstacleX(obstacleXRef.current);
-
-      animationRef.current = requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(loop);
     };
 
-    lastTimeRef.current = performance.now();
-    animationRef.current = requestAnimationFrame(animate);
+    animationRef.current = requestAnimationFrame(loop);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [status]);
+  }, [playing]);
 
   return (
     <main className="home">
+
       {/* GAME */}
 
       <section className="cognitive-game">
-        <div className="game-top">
-          <div className="game-name">COGNITIVE GAME</div>
 
-          <div className="game-score">
-            {String(score).padStart(5, "0")}
-          </div>
+        <div className="game-header">
+          <span>COGNITIVE GAME</span>
+
+          <span>
+            {String(score).padStart(4, "0")}
+          </span>
         </div>
 
-        <div
-          className="game"
-          onPointerDown={jump}
-          role="button"
-          tabIndex={0}
-          aria-label="Cognitive game. Tap or press space to jump."
-        >
+        <div className="game" onPointerDown={jump}>
+
+          {/* subtle perception illusion */}
+
           <div className="illusion">
-            <div className="illusion-shape illusion-one" />
-            <div className="illusion-shape illusion-two" />
-            <div className="illusion-shape illusion-three" />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
           </div>
 
-          <div className="cloud cloud-one" />
-          <div className="cloud cloud-two" />
+          {/* ground */}
 
-          <div className="ground">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
+          <div className="ground" />
 
-          {/* Mushroom */}
+          {/* mushroom */}
 
           <div
-            className="mushroom"
-            style={{
-              bottom: `${playerY + 7}%`,
-            }}
+            className={`mushroom ${jumping ? "jump" : ""}`}
           >
-            <div className="mushroom-cap">
-              <i className="spot spot-one" />
-              <i className="spot spot-two" />
-              <i className="spot spot-three" />
+            <div className="cap">
+              <span />
+              <span />
+              <span />
             </div>
 
-            <div className="mushroom-face">
-              <i className="eye eye-left" />
-              <i className="eye eye-right" />
+            <div className="head">
+              <i />
+              <i />
             </div>
 
-            <div className="mushroom-feet">
-              <i />
-              <i />
+            <div className="feet">
+              <b />
+              <b />
             </div>
           </div>
 
-          {/* Obstacle */}
+          {/* obstacle */}
 
           <div
             className="obstacle"
             style={{
-              left: `${obstacleX}%`,
+              left: `${obstacleLeft}%`,
             }}
           >
-            <div className="obstacle-top" />
-            <div className="obstacle-body" />
+            <div />
+            <div />
           </div>
 
-          {/* Start */}
+          {/* instruction */}
 
-          {status === "ready" && (
-            <div className="game-message">
-              <strong>SPACE / TAP</strong>
+          {!playing && !gameOver && (
+            <div className="message">
+              <strong>TAP / SPACE</strong>
               <span>jump</span>
             </div>
           )}
 
-          {/* Game Over */}
+          {/* game over */}
 
-          {status === "gameover" && (
-            <div className="game-message">
+          {gameOver && (
+            <div className="message">
               <strong>GAME OVER</strong>
               <span>tap to restart</span>
             </div>
           )}
+
         </div>
+
       </section>
 
-      {/* SITE TITLE */}
+
+      {/* TITLE */}
 
       <div className="home-title">
         computation & cognition lab @ nyu
       </div>
 
+
       {/* NAVIGATION */}
 
       <div className="home-navigation">
+
         <section className="home-section">
-          <div className="home-section-title">research</div>
+          <div className="home-section-title">
+            research
+          </div>
 
           <a href="#">overview</a>
           <a href="#">teaching</a>
@@ -245,8 +206,11 @@ export default function Page() {
           <a href="#">videos</a>
         </section>
 
+
         <section className="home-section">
-          <div className="home-section-title">publications</div>
+          <div className="home-section-title">
+            publications
+          </div>
 
           <a href="#">by year</a>
           <a href="#">by topic</a>
@@ -255,21 +219,29 @@ export default function Page() {
           <a href="#">github</a>
         </section>
 
+
         <section className="home-section">
-          <div className="home-section-title">people</div>
+          <div className="home-section-title">
+            people
+          </div>
 
           <a href="#">todd gureckis (pi)</a>
           <a href="#">the team</a>
         </section>
 
+
         <section className="home-section">
-          <div className="home-section-title">location</div>
+          <div className="home-section-title">
+            location
+          </div>
 
           <a href="#">compcogsci@nyu</a>
           <a href="#">getting involved</a>
           <a href="#">lab docs</a>
         </section>
+
       </div>
+
     </main>
   );
 }
