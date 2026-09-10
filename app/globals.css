@@ -16,10 +16,6 @@ body {
   box-sizing: border-box;
 }
 
-button {
-  font: inherit;
-}
-
 a {
   color: #777;
   text-decoration: none;
@@ -43,405 +39,387 @@ a:hover {
 
 
 /* =========================================================
-   COGNITIVE GAME
+   GAME
    ========================================================= */
 
 .cognitive-game {
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 78px;
 }
 
-
-/* Header */
-
-.game-header {
+.game-top {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  gap: 40px;
-  margin-bottom: 18px;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
 }
 
-.game-header h1 {
-  margin: 0;
-
-  font-size: clamp(42px, 6vw, 82px);
-  font-weight: 700;
-  letter-spacing: -0.065em;
-  line-height: 0.88;
-}
-
-.game-header p {
-  margin: 10px 0 0;
-
-  color: #777;
-
-  font-size: 15px;
-}
-
-
-/* Stats */
-
-.game-stats {
-  display: flex;
-  gap: 35px;
-
-  flex-shrink: 0;
-}
-
-.game-stats div {
-  display: flex;
-  flex-direction: column;
-}
-
-.game-stats span {
-  color: #999;
-
-  font-size: 11px;
+.game-name {
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-.game-stats strong {
-  color: #000;
-
-  font-size: 18px;
-  font-weight: 400;
+.game-score {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
 
 
 /* =========================================================
-   RACE TRACK
+   GAME AREA
    ========================================================= */
 
-.race-track {
+.game {
   position: relative;
 
   width: 100%;
-  height: 430px;
+  height: 300px;
 
   overflow: hidden;
 
   border: 1px solid #ddd;
 
-  background: #f7f7f7;
+  background: #fafafa;
+
+  cursor: pointer;
+
+  touch-action: manipulation;
+
+  user-select: none;
 }
 
 
-/* Background */
+/* =========================================================
+   SUBTLE PERCEPTION ILLUSION
+   ========================================================= */
 
-.track-background {
+.illusion {
   position: absolute;
   inset: 0;
 
-  background:
-    repeating-linear-gradient(
-      92deg,
-      transparent 0px,
-      transparent 44px,
-      rgba(0, 0, 0, 0.035) 45px,
-      transparent 46px
-    );
+  overflow: hidden;
+
+  opacity: 0.07;
+}
+
+.illusion-shape {
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  border: 1px solid #000;
+
+  border-radius: 50%;
+}
+
+.illusion-one {
+  left: 18%;
+  top: 10%;
+
+  transform: scaleX(2.2);
+}
+
+.illusion-two {
+  left: 48%;
+  top: 30%;
+
+  transform: scaleX(0.55);
+}
+
+.illusion-three {
+  right: 8%;
+  top: 5%;
+
+  transform: scaleX(1.8);
 }
 
 
 /* =========================================================
-   ILLUSION
+   CLOUDS
    ========================================================= */
 
-.illusion-lines {
+.cloud {
   position: absolute;
-  inset: -20%;
 
-  display: flex;
-  justify-content: space-around;
-
-  transform: rotate(-7deg) scale(1.15);
-
-  opacity: 0.13;
-}
-
-.illusion-lines span {
-  width: 2px;
-  height: 150%;
+  height: 1px;
 
   background: #000;
 
-  transform: skewX(18deg);
+  opacity: 0.12;
 }
 
-.illusion-lines span:nth-child(even) {
-  transform: skewX(-18deg);
+.cloud-one {
+  width: 80px;
+  top: 27%;
+  left: 15%;
+}
+
+.cloud-two {
+  width: 45px;
+  top: 18%;
+  right: 21%;
 }
 
 
 /* =========================================================
-   ROAD
+   GROUND
    ========================================================= */
 
-.track-road {
+.ground {
   position: absolute;
 
-  left: 20%;
-  right: 20%;
-  top: -20%;
-  bottom: -20%;
+  left: 0;
+  right: 0;
+  bottom: 7%;
 
-  background: #fff;
+  height: 1px;
 
-  clip-path: polygon(
-    30% 0%,
-    70% 0%,
-    92% 100%,
-    8% 100%
-  );
+  background: #000;
+}
 
-  border-left: 2px solid #000;
-  border-right: 2px solid #000;
+.ground span {
+  position: absolute;
+
+  top: 7px;
+
+  width: 30px;
+  height: 1px;
+
+  background: #000;
+
+  opacity: 0.25;
+}
+
+.ground span:nth-child(1) {
+  left: 8%;
+}
+
+.ground span:nth-child(2) {
+  left: 31%;
+}
+
+.ground span:nth-child(3) {
+  left: 54%;
+}
+
+.ground span:nth-child(4) {
+  left: 72%;
+}
+
+.ground span:nth-child(5) {
+  left: 91%;
 }
 
 
-/* Road perspective lines */
+/* =========================================================
+   MUSHROOM
+   ========================================================= */
 
-.road-line {
+.mushroom {
   position: absolute;
 
-  left: 50%;
+  left: 13%;
 
-  width: 4px;
-  height: 60px;
-
-  background: #000;
+  width: 34px;
+  height: 43px;
 
   transform: translateX(-50%);
+
+  z-index: 5;
 }
 
-.line-one {
-  top: 20%;
-}
-
-.line-two {
-  top: 45%;
-}
-
-.line-three {
-  top: 70%;
-}
-
-
-/* Start */
-
-.start-line {
+.mushroom-cap {
   position: absolute;
 
-  left: 50%;
-  bottom: 18%;
+  left: 2px;
+  top: 0;
 
-  transform: translateX(-50%) rotate(-1deg);
+  width: 30px;
+  height: 20px;
 
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  border: 2px solid #000;
+
+  border-radius: 17px 17px 5px 5px;
+
+  background: #fff;
+}
+
+.spot {
+  position: absolute;
+
+  display: block;
+
+  width: 5px;
+  height: 5px;
+
+  border: 1px solid #000;
+
+  border-radius: 50%;
+
+  background: #000;
+}
+
+.spot-one {
+  left: 6px;
+  top: 5px;
+}
+
+.spot-two {
+  right: 6px;
+  top: 4px;
+}
+
+.spot-three {
+  left: 13px;
+  top: 2px;
+}
+
+.mushroom-face {
+  position: absolute;
+
+  left: 8px;
+  top: 17px;
+
+  width: 18px;
+  height: 17px;
+
+  border: 2px solid #000;
+
+  border-top: 0;
+
+  background: #fff;
+
+  border-radius: 0 0 8px 8px;
+}
+
+.eye {
+  position: absolute;
+
+  top: 5px;
+
+  width: 3px;
+  height: 5px;
+
+  background: #000;
+}
+
+.eye-left {
+  left: 3px;
+}
+
+.eye-right {
+  right: 3px;
+}
+
+.mushroom-feet {
+  position: absolute;
+
+  left: 6px;
+  bottom: 0;
+
+  display: flex;
+  gap: 8px;
+}
+
+.mushroom-feet i {
+  display: block;
+
+  width: 9px;
+  height: 4px;
+
+  background: #000;
+
+  border-radius: 4px;
 }
 
 
 /* =========================================================
-   CAR
+   OBSTACLE
    ========================================================= */
 
-.race-car {
+.obstacle {
   position: absolute;
 
-  width: 22px;
-  height: 42px;
+  bottom: 7%;
 
-  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 35px;
 
-  z-index: 5;
-
-  transition: left 0.08s ease-out;
-}
-
-.car-body {
-  position: absolute;
-
-  left: 3px;
-  top: 4px;
-
-  width: 16px;
-  height: 34px;
-
-  background: #000;
-
-  border-radius: 7px 7px 4px 4px;
-}
-
-.car-roof {
-  position: absolute;
-
-  left: 5px;
-  top: 9px;
-
-  width: 12px;
-  height: 13px;
-
-  background: #fff;
-
-  border-radius: 5px 5px 2px 2px;
-
-  z-index: 2;
-}
-
-.car-window {
-  position: absolute;
-
-  left: 7px;
-  top: 11px;
-
-  width: 8px;
-  height: 8px;
-
-  background: #000;
-
-  border-radius: 3px;
-
-  z-index: 3;
-}
-
-.car-wheel {
-  position: absolute;
-
-  width: 5px;
-  height: 10px;
-
-  background: #000;
+  transform: translateX(-50%);
 
   z-index: 4;
 }
 
-.wheel-left {
-  left: 0;
-  top: 10px;
-}
-
-.wheel-right {
-  right: 0;
-  top: 10px;
-}
-
-
-/* Steering */
-
-.race-car.left {
-  transform: translate(-50%, -50%) rotate(-8deg);
-}
-
-.race-car.right {
-  transform: translate(-50%, -50%) rotate(8deg);
-}
-
-
-/* =========================================================
-   GAME OVERLAY
-   ========================================================= */
-
-.game-overlay {
+.obstacle-body {
   position: absolute;
-  inset: 0;
 
-  z-index: 10;
+  left: 7px;
+  bottom: 0;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 14px;
+  height: 27px;
 
-  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
 
-  text-align: center;
+  background: #fff;
 }
 
-.overlay-title {
-  font-size: clamp(38px, 5vw, 70px);
-  font-weight: 700;
-  letter-spacing: -0.06em;
-}
+.obstacle-top {
+  position: absolute;
 
-.game-overlay p {
-  margin: 8px 0;
+  left: 0;
+  top: 1px;
 
-  color: #777;
-}
+  width: 28px;
+  height: 15px;
 
-.game-overlay button {
-  margin-top: 15px;
-
-  padding: 0;
-
-  border: 0;
-
-  background: transparent;
-
-  color: #777;
-
-  cursor: pointer;
-}
-
-.game-overlay button:hover {
-  color: #000;
-
-  text-decoration: underline;
-}
-
-.new-best {
-  color: #000 !important;
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   TOUCH CONTROLS
-   ========================================================= */
-
-.touch-controls {
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 25px;
-
-  margin-top: 12px;
-}
-
-.touch-controls button {
-  width: 50px;
-  height: 40px;
-
-  border: 1px solid #ddd;
+  border: 2px solid #000;
 
   background: #fff;
 
-  cursor: pointer;
-}
-
-.touch-controls button:active {
-  background: #eee;
-}
-
-.touch-controls span {
-  color: #999;
-
-  font-size: 12px;
+  clip-path: polygon(
+    50% 0%,
+    100% 100%,
+    0% 100%
+  );
 }
 
 
-/* Help */
+/* =========================================================
+   GAME MESSAGE
+   ========================================================= */
 
-.game-help {
-  margin-top: 10px;
+.game-message {
+  position: absolute;
+  inset: 0;
 
-  color: #999;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.game-message strong {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.game-message span {
+  margin-top: 4px;
+
+  color: #777;
 
   font-size: 12px;
 }
@@ -484,16 +462,13 @@ a:hover {
 
   font-weight: 700;
 
-  margin: 0 0 4px 0;
+  margin-bottom: 4px;
 }
 
 .home-section a {
   display: block;
 
   color: #777;
-
-  margin: 0;
-  padding: 0;
 }
 
 .home-section a:hover {
@@ -502,39 +477,16 @@ a:hover {
 
 
 /* =========================================================
-   LAPTOP
+   TABLET
    ========================================================= */
 
-@media (max-width: 1000px) {
-
+@media (max-width: 900px) {
   .home {
     padding: 28px 30px;
   }
 
-  .cognitive-game {
-    margin-bottom: 65px;
-  }
-
-  .game-header {
-    align-items: flex-start;
-  }
-
-  .game-header h1 {
-    font-size: clamp(38px, 7vw, 65px);
-  }
-
-  .race-track {
-    height: 380px;
-  }
-
-  .home-title {
-    font-size: 22px;
-
-    margin-bottom: 50px;
-  }
-
-  .home-section {
-    padding-right: 20px;
+  .game {
+    height: 280px;
   }
 }
 
@@ -544,7 +496,6 @@ a:hover {
    ========================================================= */
 
 @media (max-width: 700px) {
-
   .home {
     padding: 24px;
   }
@@ -553,43 +504,16 @@ a:hover {
     margin-bottom: 55px;
   }
 
-  .game-header {
-    display: block;
-
-    margin-bottom: 16px;
+  .game {
+    height: 250px;
   }
 
-  .game-header h1 {
-    font-size: 13vw;
-
-    margin-bottom: 10px;
+  .game-name {
+    font-size: 11px;
   }
 
-  .game-header p {
-    font-size: 14px;
-  }
-
-  .game-stats {
-    margin-top: 18px;
-
-    gap: 28px;
-  }
-
-  .game-stats strong {
-    font-size: 16px;
-  }
-
-  .race-track {
-    height: 75vw;
-    min-height: 300px;
-  }
-
-  .touch-controls {
-    display: flex;
-  }
-
-  .game-help {
-    text-align: center;
+  .game-score {
+    font-size: 12px;
   }
 
   .home-title {
